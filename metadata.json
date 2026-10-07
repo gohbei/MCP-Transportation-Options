@@ -1,0 +1,6 @@
+{
+  "name": "Urban Pulse Transit",
+  "description": "High-contrast, real-time urban transit dashboard with live departure telemetry, interactive line navigation, route planner, and service alerts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
