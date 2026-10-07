@@ -22,6 +22,7 @@ import { TripPlanner } from './components/TripPlanner';
 import { LineStatusBoard } from './components/LineStatusBoard';
 import { GoModeCompanion } from './components/GoModeCompanion';
 import { StationDetailModal } from './components/StationDetailModal';
+import { LtaBusArrivalView } from './components/LtaBusArrivalView';
 import { RouteBadge } from './components/RouteBadge';
 import {
   Radio,
@@ -40,7 +41,7 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'departures' | 'map' | 'planner' | 'lines'>('departures');
+  const [activeTab, setActiveTab] = useState<'departures' | 'lta-bus' | 'map' | 'planner' | 'lines'>('departures');
   const [selectedStation, setSelectedStation] = useState<Station>(STATIONS[0]); // Grand Central
   const [departuresData, setDeparturesData] = useState<Record<string, Departure[]>>(INITIAL_DEPARTURES);
   const [vehicles, setVehicles] = useState<LiveVehicle[]>(INITIAL_VEHICLES);
@@ -177,6 +178,13 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto">
+            <button
+              onClick={() => setActiveTab('lta-bus')}
+              className="px-2.5 py-1 rounded-md bg-[#00875A]/20 hover:bg-[#00875A]/30 border border-[#71DBA6]/40 text-xs font-semibold text-[#71DBA6] whitespace-nowrap transition-colors flex items-center gap-1.5"
+            >
+              <span>🇸🇬 LTA Bus Stop 04121</span>
+              <ChevronRight className="w-3 h-3 text-[#71DBA6]" />
+            </button>
             {PRESET_ROUTES.map((route) => (
               <button
                 key={route.id}
@@ -218,6 +226,12 @@ export default function App() {
                 onStartRide={handleStartRide}
                 onOpenStationDetails={(st) => setInspectStationModal(st)}
               />
+            )}
+
+            {activeTab === 'lta-bus' && (
+              <div className="max-w-4xl mx-auto">
+                <LtaBusArrivalView />
+              </div>
             )}
 
             {activeTab === 'planner' && (

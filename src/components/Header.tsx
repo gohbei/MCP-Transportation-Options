@@ -11,8 +11,8 @@ import {
 } from 'lucide-react';
 
 interface HeaderProps {
-  activeTab: 'departures' | 'map' | 'planner' | 'lines';
-  onTabChange: (tab: 'departures' | 'map' | 'planner' | 'lines') => void;
+  activeTab: 'departures' | 'lta-bus' | 'map' | 'planner' | 'lines';
+  onTabChange: (tab: 'departures' | 'lta-bus' | 'map' | 'planner' | 'lines') => void;
   onLocateMe?: () => void;
   isLocating?: boolean;
 }
@@ -120,6 +120,18 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             Live Departures
+          </button>
+
+          <button
+            onClick={() => onTabChange('lta-bus')}
+            className={`flex-1 md:flex-initial px-3.5 py-2 rounded-lg text-xs font-hanken font-bold uppercase tracking-wider transition-all whitespace-nowrap text-center flex items-center justify-center gap-1.5 ${
+              activeTab === 'lta-bus'
+                ? 'bg-[#E11D48] text-white shadow-md'
+                : 'text-[#87948B] hover:text-[#DFE2EE] hover:bg-[#1C2028]'
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#71DBA6] animate-ping" />
+            <span>LTA SG Bus (04121)</span>
           </button>
 
           <button
